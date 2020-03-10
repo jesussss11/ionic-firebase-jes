@@ -1,19 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Mr Robot
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <section class="full-width">
-    <ion-button expand="full" color="primary">A full-width button</ion-button>
+    <ion-button expand="full" color="primary" [routerLink]="['/ordenador']">Ordenadores</ion-button>
   </section>
   <section class="full-width">
-    <ion-button expand="full" color="secondary">A full-width button</ion-button>
+    <ion-button expand="full" color="secondary"[routerLink]="['/periferico']">Periféricos</ion-button>
   </section>
   <section class="full-width">
-    <ion-button expand="full" color="tertiary">A full-width button</ion-button>
+    <ion-button expand="full" color="tertiary"[routerLink]="['/movil']">Móviles</ion-button>
   </section>
 </ion-content>
