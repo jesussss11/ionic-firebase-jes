@@ -16,10 +16,10 @@ import { ArticulosService } from 'src/app/services/Articulos.service';
 })
 export class PerifericoPage  {
 
-  idSelected:any; //Esta variable se cargará cuando elijamos una fruta, así controlamos si es una fruta nueva o para actualizar
-  show:boolean; //Esta variable contralará cuando queremos que se muestren los campos para introducir o actualizar una fruta
-  perifericos = []; //Array donde cargaremos las frutas que hay en la base de datos y las mostraremos en nuestra page
-  articulo = {id:0, name:null, quantity:null, price: null}; //Declaramos un objeto vacio de fruta
+  idSelected:any; 
+  show:boolean; 
+  perifericos = []; 
+  articulo = {id:0, name:null, quantity:null, price: null}; //Declaramos un objeto vacio 
 
   constructor(public articulosService : ArticulosService,
     public navCtrl: NavController) { 
@@ -39,21 +39,21 @@ export class PerifericoPage  {
     }
     this.clear();
   }
-  selectPeriferico(id){ //selecionamos una fruta y mostramos los campos
+  selectPeriferico(id){ //selecionamos un articuloy mostramos los campos
     this.show = true;
     this.idSelected = id;//cogemos su id
 
-    let receivedPeriferico:any; //declaramos un objeto vacio que será el que reciba la información de la fruta que seleccionamos
+    let receivedPeriferico:any; //declaramos un objeto vacio que será el que reciba la información  que seleccionamos
 
-    this.articulosService.getPeriferico(id)//hacemos uso de la funcion getfruit de nuestro servicio
+    this.articulosService.getPeriferico(id)//hacemos uso de la funcion de nuestro servicio
     .subscribe(articulo=>{
       receivedPeriferico = articulo;//el objeto vacio recibe la variable
-      this.articulo = receivedPeriferico;//Y se lo asignamos al objeto fruta los valores que se han retornado del servicio
+      this.articulo = receivedPeriferico;//Y se lo asignamos al objeto los valores que se han retornado del servicio
     });
   }
   
   removeSelectedPeriferico(){
-    //Llamamos a la funcion removeFruit de nuestro servicio, le pasamos el idselected y se borra esa fruta
+    //Llamamos a la funcion remove de nuestro servicio, le pasamos el idselected y se borra 
     this.articulosService.removePeriferico(this.idSelected);
     this.clear();
   }

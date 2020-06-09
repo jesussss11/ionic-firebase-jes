@@ -1,5 +1,7 @@
 {
   "name": "ionic-firebase-jes",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

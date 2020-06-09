@@ -15,10 +15,10 @@ import { ArticulosService } from 'src/app/services/Articulos.service';
 })
 export class OrdenadorPage  {
 
-  idSelected:any; //Esta variable se cargará cuando elijamos una fruta, así controlamos si es una fruta nueva o para actualizar
-  show:boolean; //Esta variable contralará cuando queremos que se muestren los campos para introducir o actualizar una fruta
-  ordenadores = []; //Array donde cargaremos las frutas que hay en la base de datos y las mostraremos en nuestra page
-  articulo = {id:0, name:null, quantity:null}; //Declaramos un objeto vacio de fruta
+  idSelected:any; 
+  show:boolean; 
+  ordenadores = []; 
+  articulo = {id:0, name:null, quantity:null, price:null}; 
 
   constructor(public articulosService : ArticulosService,
     public navCtrl: NavController) { 
@@ -31,7 +31,7 @@ export class OrdenadorPage  {
   }
   
   saveOrdenador(){
-    if(this.idSelected != 0){//si es diferente a 0 actualizamos, sino creamos uno nuevo
+    if(this.idSelected != 0){
       this.articulosService.updateOrdenador(this.articulo);
     }else{
       this.articulosService.saveOrdenador(this.articulo);
@@ -40,30 +40,31 @@ export class OrdenadorPage  {
   }
 
 
-  selectOrdenador(id){ //selecionamos una fruta y mostramos los campos
+  selectOrdenador(id){ 
     this.show = true;
-    this.idSelected = id;//cogemos su id
+    this.idSelected = id;
 
-    let receivedOrdenador:any; //declaramos un objeto vacio que será el que reciba la información de la fruta que seleccionamos
+    let receivedOrdenador:any; 
 
-    this.articulosService.getOrdenador(id)//hacemos uso de la funcion getfruit de nuestro servicio
+    this.articulosService.getOrdenador(id)
     .subscribe(articulo=>{
-      receivedOrdenador = articulo;//el objeto vacio recibe la variable
-      this.articulo = receivedOrdenador;//Y se lo asignamos al objeto fruta los valores que se han retornado del servicio
+      receivedOrdenador = articulo;
+      this.articulo = receivedOrdenador;
     });
   }
 
   removeSelectedOrdenador(){
-    //Llamamos a la funcion removeFruit de nuestro servicio, le pasamos el idselected y se borra esa fruta
+    
     this.articulosService.removeOrdenador(this.idSelected);
     this.clear();
   }
   clear(){
-    //inicializamos los valores de las variables una vez hecha una acción
+   
     this.show = false;
     this.idSelected = 0;
     this.articulo.name = null;
     this.articulo.id = null;
     this.articulo.quantity  = null;
+    this.articulo.price =null;
   }
 }
